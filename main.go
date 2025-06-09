@@ -6,13 +6,13 @@ func main(){
 	type Val4 struct {
         val string
     }
-		type Val3 struct {
-        val []Val4
+	type Val3 struct {
+        val Val4
     }
     type Val2 struct {
         val []Val3
     }
-		type Val1 struct {
+	type Val1 struct {
         val [][]Val2
     }
     
@@ -22,18 +22,17 @@ func main(){
                 {},
                 {},
                 {},
-                Val2{
+                {
                     val: []Val3{
                         {},
-                        {val: []Val4{
-                            {},
-                            {val: "Hello"},
-                        }},
+                        {
+                            val: Val4{val: "Hello"},
+                        },
                     },
                 },
             },
         },
     }
 
-    fmt.Println(str.val[0][3].val[1].val[1].val)
+    fmt.Println(str.val[0][3].val[1].val.val)
 }
